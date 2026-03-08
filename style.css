@@ -89,10 +89,45 @@ a {
   font-size: 1.05rem;
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
 .main-nav {
   display: inline-flex;
   align-items: center;
   gap: 1.2rem;
+}
+
+.lang-toggle {
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--text);
+  min-width: 3.05rem;
+  height: 2rem;
+  padding: 0 0.72rem;
+  border-radius: 999px;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.22s ease, transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+}
+
+.lang-toggle:hover,
+.lang-toggle:focus-visible {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(24, 46, 90, 0.32);
+  transform: translateY(-1px);
+}
+
+.lang-toggle:focus-visible {
+  outline: 2px solid rgba(30, 102, 230, 0.42);
+  outline-offset: 2px;
 }
 
 .main-nav a {
@@ -642,6 +677,22 @@ body.theme-darkpurple .main-nav a::after {
   background: rgba(223, 191, 255, 0.92);
 }
 
+body.theme-darkpurple .lang-toggle {
+  background: rgba(191, 150, 255, 0.16);
+  border-color: rgba(217, 186, 255, 0.44);
+  color: #f2e8ff;
+}
+
+body.theme-darkpurple .lang-toggle:hover,
+body.theme-darkpurple .lang-toggle:focus-visible {
+  background: rgba(217, 186, 255, 0.3);
+  border-color: rgba(236, 218, 255, 0.64);
+}
+
+body.theme-darkpurple .lang-toggle:focus-visible {
+  outline-color: rgba(229, 203, 255, 0.48);
+}
+
 body.theme-darkpurple .btn {
   color: #2a1748;
   background: linear-gradient(120deg, #d9bcff, #b983ff);
@@ -916,6 +967,13 @@ body.theme-darkpurple .hero::after {
     font-size: 1rem;
   }
 
+  .header-actions {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    gap: 0.42rem;
+  }
+
   .main-nav {
     width: 100%;
     justify-content: center;
@@ -981,6 +1039,12 @@ body.theme-darkpurple .hero::after {
   body.theme-darkpurple .main-nav a:focus-visible {
     color: #f6efff;
     transform: none;
+  }
+
+  .lang-toggle {
+    min-width: 2.85rem;
+    height: 1.88rem;
+    font-size: 0.75rem;
   }
 
   .footer-inner {
