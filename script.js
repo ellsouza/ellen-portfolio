@@ -12,6 +12,9 @@ const translations = {
     heroTitle: "Websites profissionais com visual clean, performance e clareza.",
     heroDescription: "Crio páginas institucionais e interfaces responsivas para negócios que precisam transmitir confiança e profissionalismo online.",
     heroCta: "Ver prévias",
+    heroBenefit1: "\u2713 Sites institucionais profissionais",
+    heroBenefit2: "\u2713 Design responsivo para celular e desktop",
+    heroBenefit3: "\u2713 Estrutura otimizada para SEO",
     aboutPhotoAlt: "Foto de Ellen Souza",
     aboutLabel: "Sobre",
     aboutTitle: "Sobre mim",
@@ -51,6 +54,13 @@ const translations = {
     project3PreviewAria: "Prévia de landing institucional",
     project3Title: "Landing Institucional",
     project3Desc: "Hero impactante com métricas e narrativa visual voltada para conversão.",
+    processLabel: "Processo",
+    processTitle: "Como desenvolvo um projeto",
+    processStep1: "1. Entendimento do neg\u00f3cio e objetivos do site.",
+    processStep2: "2. Estrutura\u00e7\u00e3o das p\u00e1ginas e organiza\u00e7\u00e3o do conte\u00fado.",
+    processStep3: "3. Desenvolvimento responsivo e otimiza\u00e7\u00e3o t\u00e9cnica.",
+    processStep4: "4. Revis\u00e3o final e publica\u00e7\u00e3o do site.",
+    portfolioMoreLabel: "Mais projetos e c\u00f3digo dispon\u00edvel em:",
     contactLabel: "Contato",
     contactTitle: "Vamos conversar sobre seu projeto.",
     contactDescription: "Compartilhe seu objetivo e o contexto do seu negócio. Eu retorno com direção visual, escopo inicial e próximos passos para execução.",
@@ -80,6 +90,9 @@ const translations = {
     heroTitle: "Professional websites with clean visuals, performance, and clarity.",
     heroDescription: "I build institutional websites and responsive interfaces for businesses that need to communicate trust and professionalism online.",
     heroCta: "View previews",
+    heroBenefit1: "\u2713 Professional institutional websites",
+    heroBenefit2: "\u2713 Responsive design for mobile and desktop",
+    heroBenefit3: "\u2713 SEO-optimized structure",
     aboutPhotoAlt: "Photo of Ellen Souza",
     aboutLabel: "About",
     aboutTitle: "About me",
@@ -119,6 +132,13 @@ const translations = {
     project3PreviewAria: "Institutional landing page preview",
     project3Title: "Institutional Landing Page",
     project3Desc: "Impactful hero section with metrics and a conversion-focused visual narrative.",
+    processLabel: "Process",
+    processTitle: "How I build a project",
+    processStep1: "1. Understanding the business and the website goals.",
+    processStep2: "2. Structuring the pages and organizing the content.",
+    processStep3: "3. Responsive development and technical optimization.",
+    processStep4: "4. Final review and website publishing.",
+    portfolioMoreLabel: "More projects and code available at:",
     contactLabel: "Contact",
     contactTitle: "Let's talk about your project.",
     contactDescription: "Share your goal and your business context. I will reply with visual direction, initial scope, and next execution steps.",
@@ -168,6 +188,56 @@ const updateTextNodes = (dictionary) => {
   });
 };
 
+const setTextContent = (element, value) => {
+  if (element && typeof value === "string") {
+    element.textContent = value;
+  }
+};
+
+const updateStructuredContent = (dictionary) => {
+  const directTextTargets = [
+    [".hero-benefits li:nth-child(1)", "heroBenefit1"],
+    [".hero-benefits li:nth-child(2)", "heroBenefit2"],
+    [".hero-benefits li:nth-child(3)", "heroBenefit3"]
+  ];
+
+  directTextTargets.forEach(([selector, key]) => {
+    setTextContent(document.querySelector(selector), dictionary[key]);
+  });
+
+  const processSection = document.querySelector(".single-column");
+  if (processSection) {
+    setTextContent(processSection.querySelector(".section-label"), dictionary.processLabel);
+    setTextContent(processSection.querySelector("h2"), dictionary.processTitle);
+
+    const processSteps = processSection.querySelectorAll("p:not(.section-label)");
+    setTextContent(processSteps[0], dictionary.processStep1);
+    setTextContent(processSteps[1], dictionary.processStep2);
+    setTextContent(processSteps[2], dictionary.processStep3);
+    setTextContent(processSteps[3], dictionary.processStep4);
+  }
+
+  const thirdProjectDescription = document.querySelector(".project-card:nth-of-type(3) .project-body p:last-of-type");
+  const duplicatedProjectDescription = document.querySelector('.project-card:nth-of-type(3) .project-body p[data-i18n="project3Desc"]');
+
+  setTextContent(thirdProjectDescription, dictionary.project3Desc);
+
+  if (duplicatedProjectDescription && duplicatedProjectDescription !== thirdProjectDescription) {
+    duplicatedProjectDescription.remove();
+  }
+
+  const moreProjects = document.querySelector(".projects-grid > p");
+  if (moreProjects && typeof dictionary.portfolioMoreLabel === "string") {
+    const moreProjectsLink = moreProjects.querySelector("a");
+
+    if (moreProjectsLink) {
+      moreProjects.replaceChildren(document.createTextNode(`${dictionary.portfolioMoreLabel} `), moreProjectsLink);
+    } else {
+      moreProjects.textContent = dictionary.portfolioMoreLabel;
+    }
+  }
+};
+
 const applyLanguage = (language) => {
   const lang = translations[language] ? language : "pt";
   const dictionary = translations[lang];
@@ -183,6 +253,7 @@ const applyLanguage = (language) => {
   }
 
   updateTextNodes(dictionary);
+  updateStructuredContent(dictionary);
 
   if (langToggle) {
     const nextLanguage = lang === "pt" ? "en" : "pt";
