@@ -93,9 +93,9 @@ a {
 }
 
 .brand-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
+  width: 50px;
+  height: 50px;
+  border-radius: 16px;
   overflow: hidden;
   flex: none;
   border: 1px solid rgba(24, 46, 90, 0.14);
@@ -114,6 +114,7 @@ a {
 
 .brand-name {
   line-height: 1.05;
+  white-space: nowrap;
 }
 
 .main-nav {
@@ -1650,9 +1651,9 @@ body.theme-darkpurple .hero::after {
   }
 
   .brand-mark {
-    width: 38px;
-    height: 38px;
-    border-radius: 12px;
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
   }
 
   .brand-logo {
