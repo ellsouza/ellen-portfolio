@@ -229,8 +229,8 @@ a {
 }
 
 .hero-logo {
-  width: clamp(150px, 18vw, 220px);
-  max-width: 100%;
+  width: clamp(120px, 12vw, 170px);
+  max-width: min(100%, 170px);
   height: auto;
   border-radius: 18px;
   border: 1px solid rgba(24, 46, 90, 0.12);
@@ -1527,6 +1527,11 @@ body.theme-darkpurple .hero::after {
     margin-top: -0.22rem;
   }
 
+  .hero-logo {
+    width: 140px;
+    max-width: 140px;
+  }
+
   body.theme-darkpurple .hero-visual {
     width: min(100%, 42rem);
     margin-top: -0.45rem;
@@ -1648,6 +1653,10 @@ body.theme-darkpurple .hero::after {
     width: 38px;
     height: 38px;
     border-radius: 12px;
+  }
+
+  .brand-logo {
+    transform: scale(1.45);
   }
 
   .main-nav {
